@@ -1,8 +1,8 @@
 ---
 - name: Update homebrew and upgrade all packages
   community.general.homebrew:
-    update_homebrew: yes
-    upgrade_all: yes
+    update_homebrew: true
+    upgrade_all: true
 
 - name: Install formulas with 'brew' in default path
   community.general.homebrew:
