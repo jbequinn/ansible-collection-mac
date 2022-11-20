@@ -1,0 +1,22 @@
+---
+- name: Update homebrew and upgrade all packages
+  community.general.homebrew:
+    update_homebrew: yes
+    upgrade_all: yes
+
+- name: Install formulas with 'brew' in default path
+  community.general.homebrew:
+    name: "{{ brew_packages if brew_packages is iterable else [] }}"
+    state: present
+
+- name: Install formulas with 'brew' from cask
+  community.general.homebrew_cask:
+    name: "{{ brew_cask_packages if brew_cask_packages is iterable else [] }}"
+    state: present
+
+# leave for the last, so other dependencies are installed at this point
+- name: Install formulas with 'brew' in default path - ignore dependencies
+  community.general.homebrew:
+    name: "{{ brew_packages_ignore_dependencies if brew_packages_ignore_dependencies is iterable else [] }}"
+    state: present
+    install_options: ignore-dependencies
