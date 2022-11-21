@@ -1,0 +1,12 @@
+---
+- name: Ensure 'mas' is installed
+  community.general.homebrew:
+    name: mas
+    state: present
+
+- name: Install MAS apps
+  command: mas install "{{ item }}"
+  with_items: "{{ mas_install if mas_install is iterable else [] }}"
+
+- name: Upgrade all apps
+  command: mas upgrade

@@ -1,0 +1,5 @@
+---
+mas_install: []
+
+# mas uninstall seems not work now
+mas_uninstall: []
